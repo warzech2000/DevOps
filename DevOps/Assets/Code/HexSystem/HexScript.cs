@@ -8,9 +8,10 @@ public class HexScript : MonoBehaviour
 {
     [Header("Grid Fields")] [Tooltip("Field for object attached on this hexagon")] [SerializeField] [RequireInterface(typeof(IHexable))]
     private Object _objectOnField;    //Obiekt interaktywny na hexie
-
+    [Tooltip("radius of circle drawn to find nearby hexes")]
     [SerializeField] private float _radiusOfNearHexCheck = 5f;
-
+    [Space]
+    [Header("debug")]
     [SerializeField] private bool             _isDrawingGizmos = true;
     private                  List<GameObject> _surroundingHexes;
 
@@ -29,7 +30,7 @@ public class HexScript : MonoBehaviour
 
     }
 
-    public void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()      //rysuje gizmos jeśli jest zaznaczone
     {
         if (_isDrawingGizmos)
         {
@@ -45,7 +46,6 @@ public class HexScript : MonoBehaviour
             if (hex.GetInstanceID() == hexToCheck.GetInstanceID())
             {
                 return true;
-                break;
             }
         }
 

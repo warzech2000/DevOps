@@ -6,11 +6,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("Inventory Properties")]
+    [Tooltip("How many slots have to be generated")]
     [SerializeField] private int              _slotNumber = 9;          //ile slotów ma być generowane na start
+    [Tooltip("Parent for slots")]
     [SerializeField] private Transform        _parentInventoryTransform;//Ojciec slotów, czyli pod co są podpinane
+    [Tooltip("Prefab of slot which is instantiated")]
     [SerializeField] private GameObject       _slotPrefab;              //Prefab Slotów
+    [Tooltip("Max carry weight")]
+    [SerializeField] private float _maxWeight; //Max obciążenie ekwipunku
+    [Space]
+    [Header("DEBUG")]
+    [Tooltip("DEBUG: list of slots")]
     [SerializeField] private List<GameObject> _slotsList;               //Lista Slotów
-    [SerializeField] private float            _maxWeight;               //Max obciążenie ekwipunku
     // Start is called before the first frame update
     private static Inventory _instance;                                 //instancja ekwipunku
     public static Inventory GetInventoryInstance()                      //Singleton Ekwipunku
@@ -25,6 +33,8 @@ public class Inventory : MonoBehaviour
             _slotsList.Add(Instantiate(_slotPrefab, _parentInventoryTransform));
         }
     }
+
+    #region public
     public void AddItemToInventory(GameObject itemPrefab) //dodaje item do ekwipunku
     {
         var slotWithSameItem = SearchInSlotsWithNoFullQuantity(itemPrefab.GetComponent<Item>());
@@ -49,7 +59,7 @@ public class Inventory : MonoBehaviour
         CalculateWeight();
     }
 
-    public bool IsHaving(Item item)
+    public bool IsHaving(Item item)     //czy posiada podany item
     {
         var itemSlot = this.SearchInSlots(item);
         return itemSlot != null;
@@ -83,6 +93,9 @@ public class Inventory : MonoBehaviour
         }
         return isDone;
     }
+    #endregion
+
+    #region private
     private GameObject SearchInSlots(Item item)              //wyszukuje item podany we wszystkich slotach
     {
         GameObject slotWithItem = null;
@@ -173,4 +186,6 @@ public class Inventory : MonoBehaviour
         }
         CalculateWeight();
     }
+    #endregion
+
 }
