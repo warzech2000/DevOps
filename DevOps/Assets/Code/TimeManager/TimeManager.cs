@@ -15,6 +15,12 @@ public class TimeManager : MonoBehaviour
     {
         _minutesPerDay = _hoursPerDay * _minutesPerDayMultipiler;
     }
+    private static TimeManager _instance;            //instancja time menadżera
+    public static TimeManager GetTimeManagerInstance() //Singleton Time Menadżera
+    {
+        if (_instance == null) _instance = FindObjectOfType<TimeManager>(); //Znajdź Instancje tm w hierarchii
+        return _instance;                                                 //zwróć instancje
+    }
 
     public void PassTime(int minutesToPass)
     {

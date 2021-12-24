@@ -8,7 +8,10 @@ public class TreeHex : MonoBehaviour, IHexable
     //Pola Inspektora
     [Header("Costumizable Fields")]
     [Tooltip("How many times this field can be used")]
-    [SerializeField] private int _maxUseCount = 5;      //Ile Razy pole może zostać użyte
+    [SerializeField] private int        _maxUseCount = 5;        //Ile Razy pole może zostać użyte
+    [SerializeField] private int        _timeTaken = 5;          //Ile czasu ma być zabrane za akcje w minutach
+    [SerializeField] private GameObject _woodInvPrefab;          //Prefab drewna, które trafia do ekwipunku
+    [SerializeField] private Item       _requiredItemToInteract; //Item potrzebny do interakcji
     
     //Pola właściwości
     public HexType FieldType          { get; set; }
@@ -29,9 +32,14 @@ public class TreeHex : MonoBehaviour, IHexable
     #region InheritedFromIHexable
     public void    Interaction(Player player)
     {
-        Debug.Log("Wood +1");
-        _useCount++;
-        Depleted();
+        if (Inventory.GetInventoryInstance().IsHaving(_requiredItemToInteract))
+        {
+            Inventory.GetInventoryInstance().AddItemToInventory(_woodInvPrefab);
+            TimeManager.GetTimeManagerInstance().PassTime(_timeTaken);
+            _useCount++;
+            Depleted();
+        }
+        Debug.Log("not have");
     }
 
     public void    Depleted()
