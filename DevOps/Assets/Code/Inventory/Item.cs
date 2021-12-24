@@ -8,11 +8,18 @@ using UnityEngine.UI;
 //Klasa itemu przypisanego do slota
 public class Item : MonoBehaviour
 {
+    [Tooltip("How much item weight")]
     [SerializeField] private float    _weight;                //Waga itemu
+    [Tooltip("How many will be in stack")]
     [SerializeField] private int      _maxStackQuantity = 64; //Max liczba w slocie
-    [SerializeField] private string   _name;                  //Nazwa
+    [Tooltip("Item name")]
+    [SerializeField] private string _name;   //Nazwa
+    [Tooltip("Which item type is this item")]
+    [SerializeField] private ItemType _type; //typ itemu
+    [Space]
+    [Header("UI")]
+    [Tooltip("Display for quantity")]
     [SerializeField] private Text     _text;                  //Pole Textowe do obsługi ilości
-    [SerializeField] private ItemType _type;                  //typ itemu
 
     private int _quantity = 0;                              //ile jest aktualnie
     public int Quantity
@@ -53,7 +60,7 @@ public class Item : MonoBehaviour
 
 }
 
-public enum ItemType
+public enum ItemType    //typ itemu
 {
     RESOURCE, TOOL
 }

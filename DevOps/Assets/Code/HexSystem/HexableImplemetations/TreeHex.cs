@@ -9,8 +9,11 @@ public class TreeHex : MonoBehaviour, IHexable
     [Header("Costumizable Fields")]
     [Tooltip("How many times this field can be used")]
     [SerializeField] private int        _maxUseCount = 5;        //Ile Razy pole może zostać użyte
+    [Tooltip("how much time is taken from action")]
     [SerializeField] private int        _timeTaken = 5;          //Ile czasu ma być zabrane za akcje w minutach
+    [Tooltip("Prefab with wood, which will go to inv")]
     [SerializeField] private GameObject _woodInvPrefab;          //Prefab drewna, które trafia do ekwipunku
+    [Tooltip("Item required to interact")]
     [SerializeField] private Item       _requiredItemToInteract; //Item potrzebny do interakcji
     
     //Pola właściwości
