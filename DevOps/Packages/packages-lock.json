@@ -72,6 +72,17 @@
       "source": "builtin",
       "dependencies": {}
     },
+    "com.unity.2d.tilemap.extras": {
+      "version": "file:C:/Users/1/Desktop/2d-extras-2020.3",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
     "com.unity.cinemachine": {
       "version": "2.6.11",
       "depth": 0,
